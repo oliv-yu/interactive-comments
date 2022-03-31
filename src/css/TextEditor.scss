@@ -1,0 +1,32 @@
+.text-editor {
+	width: 100%;
+	flex-direction: row;
+	display: flex;
+
+	.text-editor-user-icon {
+		img {
+			width: 2rem;
+		}
+	}
+
+	.text-editor-textarea {
+		color: $grayblue;
+		border: 1px solid $lightgray;
+		border-radius: 0.2rem;
+		flex-grow: 1;
+		margin: 0 0.5rem;
+		padding: 0.75rem 1.5rem;
+		resize: none;
+	}
+
+	.btn {
+		height: 2.5rem;
+	}
+
+	.text-editor-button {
+		background-color: $moderateblue;
+		color: $white;
+		font-weight: 800;
+		padding: 0.25rem 1rem;
+	}
+}

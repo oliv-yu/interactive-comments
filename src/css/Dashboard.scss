@@ -1,0 +1,13 @@
+.dashboard-app {
+	font-family: 'Rubik', sans-serif;
+	margin: 0 auto;
+	width: $dashboardWidth;
+
+	.dashboard-add-comment {
+		background-color: $white;
+		border-radius: 0.5rem;
+		margin: 8px auto;
+		padding: 30px;
+		width: 100%;
+	}
+}
