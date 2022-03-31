@@ -1,10 +1,12 @@
 import { useState } from 'react'
-import Comment from './components/Comment'
+import CommentLine from './components/CommentLine'
 import TextEditor from './components/TextEditor'
 import { CurrentUserContext } from './utils/Context'
 import { USERS } from './utils/data'
 
-const CURRENT_USER = USERS.amyrobson
+// const CURRENT_USER = USERS.amyrobson
+// const CURRENT_USER = USERS.juliusomo
+const CURRENT_USER = USERS.maxblagun
 
 function Dashboard() {
 	const [thread, setThread] = useState([])
@@ -18,6 +20,7 @@ function Dashboard() {
 				created: Date.now(),
 				user: CURRENT_USER,
 				score: 0,
+				replies: [],
 			},
 		])
 	}
@@ -26,25 +29,11 @@ function Dashboard() {
 		setThread(thread.filter((comment) => comment.id !== id))
 	}
 
-	const editComment = (id, content) => {
+	const editComment = (id, edits = {}) => {
 		setThread(
 			thread.map((comment) => {
 				if (comment.id === id) {
-					return { ...comment, content }
-				}
-				return comment
-			})
-		)
-	}
-
-	const updateScore = (id, upvote = true) => {
-		setThread(
-			thread.map((comment) => {
-				if (comment.id === id) {
-					return {
-						...comment,
-						score: upvote ? comment.score + 1 : comment.score - 1,
-					}
+					return { ...comment, ...edits }
 				}
 				return comment
 			})
@@ -55,21 +44,21 @@ function Dashboard() {
 		<CurrentUserContext.Provider value={CURRENT_USER}>
 			<div className="dashboard-app">
 				{thread.map((comment) => (
-					<Comment
+					<CommentLine
+						id={comment.id}
 						key={comment.id}
 						content={comment.content}
 						created={comment.created}
 						user={comment.user}
 						score={comment.score}
-						onUpvote={() => updateScore(comment.id)}
-						onDownvote={() => updateScore(comment.id, false)}
 						onDelete={() => deleteComment(comment.id)}
-						onEdit={(content) => editComment(comment.id, content)}
+						onEdit={(edits) => editComment(comment.id, edits)}
+						replies={comment.replies}
 					/>
 				))}
 
 				<div className="dashboard-add-comment">
-					<TextEditor onSubmit={addComment} />
+					<TextEditor className="white" onSubmit={addComment} />
 				</div>
 			</div>
 		</CurrentUserContext.Provider>

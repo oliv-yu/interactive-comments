@@ -3,6 +3,7 @@ import { CurrentUserContext } from '../utils/Context'
 
 function TextEditor({
 	onSubmit,
+	className = '',
 	initialContent = '',
 	placeholder = 'Add a comment...',
 	type = 'send',
@@ -29,7 +30,7 @@ function TextEditor({
 	}
 
 	return (
-		<form className="text-editor" onSubmit={_handleSubmit}>
+		<form className={`text-editor ${className}`} onSubmit={_handleSubmit}>
 			{type !== 'update' && (
 				<div className="text-editor-user-icon">
 					<img

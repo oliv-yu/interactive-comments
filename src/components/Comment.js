@@ -8,22 +8,21 @@ import editIcon from '../icons/icon-edit.svg'
 import replyIcon from '../icons/icon-reply.svg'
 import { CurrentUserContext } from '../utils/Context'
 
-function Comment({
-	score,
-	user,
-	content,
-	created,
-	onUpvote,
-	onDownvote,
-	onDelete,
-	onEdit,
-}) {
+function Comment({ score, user, content, created, onDelete, onEdit, onReply }) {
 	const currentUser = useContext(CurrentUserContext)
 
 	const [isEditing, setIsEditing] = useState(false)
 
+	const _handleDownVote = () => {
+		onEdit({ score: score - 1 })
+	}
+
+	const _handleUpVote = () => {
+		onEdit({ score: score + 1 })
+	}
+
 	const _handleEdit = (content) => {
-		onEdit(content)
+		onEdit({ content })
 		setIsEditing(false)
 	}
 	const isAuthor = user.username === currentUser.username
@@ -32,11 +31,11 @@ function Comment({
 		<div className="comment">
 			<div className="comment-left">
 				<div className="comment-score">
-					<button className="btn btn-light btn-sm" onClick={onUpvote}>
+					<button className="btn btn-light btn-sm" onClick={_handleUpVote}>
 						<img src={plusIcon} alt="plus-icon" />
 					</button>
 					<div className="comment-score-number">{score.toString()}</div>
-					<button className="btn btn-light btn-sm" onClick={onDownvote}>
+					<button className="btn btn-light btn-sm" onClick={_handleDownVote}>
 						<img src={minusIcon} alt="minus-icon" />
 					</button>
 				</div>
@@ -76,7 +75,7 @@ function Comment({
 								</button>
 							</>
 						) : (
-							<button className="btn btn-link reply">
+							<button onClick={onReply} className="btn btn-link reply">
 								<img src={replyIcon} alt="reply-icon" />
 								Reply
 							</button>
@@ -85,20 +84,18 @@ function Comment({
 				</div>
 
 				{isEditing ? (
-					<div className="comment-editor">
-						<TextEditor
-							initialContent={content}
-							onSubmit={_handleEdit}
-							type="update"
+					<TextEditor
+						initialContent={content}
+						onSubmit={_handleEdit}
+						type="update"
+					>
+						<button
+							className="btn btn-light btn-sm"
+							onClick={() => setIsEditing(false)}
 						>
-							<button
-								className="btn btn-light btn-sm"
-								onClick={() => setIsEditing(false)}
-							>
-								x
-							</button>
-						</TextEditor>
-					</div>
+							x
+						</button>
+					</TextEditor>
 				) : (
 					<div className="comment-content">{content}</div>
 				)}

@@ -3,6 +3,12 @@
 	flex-direction: row;
 	display: flex;
 
+	&.white {
+		background-color: $white;
+		border-radius: 0.5rem;
+		padding: 30px;
+	}
+
 	.text-editor-user-icon {
 		img {
 			width: 2rem;
