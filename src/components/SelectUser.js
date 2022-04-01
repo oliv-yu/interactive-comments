@@ -7,13 +7,15 @@ function SelectUser({ currentUser, onChangeUser }) {
 
 	return (
 		<select
-			class="form-select select-user"
+			className="form-select select-user"
 			value={currentUser.username}
 			onChange={_handleChange}
 			aria-label="Select Current User"
 		>
 			{Object.keys(USERS).map((username) => (
-				<option value={username}>{username}</option>
+				<option key={username} value={username}>
+					{username}
+				</option>
 			))}
 		</select>
 	)
