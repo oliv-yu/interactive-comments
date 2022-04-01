@@ -82,7 +82,7 @@ function CommentLine({
 
 				{addingReply && (
 					<TextEditor
-						className="white reply"
+						className="white"
 						placeholder="Add a reply..."
 						onSubmit={_handleAddReply}
 						type="reply"
