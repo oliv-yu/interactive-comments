@@ -41,7 +41,7 @@ function Comment({ score, user, content, created, onDelete, onEdit, onReply }) {
 				</div>
 			</div>
 
-			<div className="comment-main">
+			<div className="comment-right">
 				<div className="comment-header">
 					<span className="comment-user-icon">
 						<img
