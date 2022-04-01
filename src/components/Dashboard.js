@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import CommentLine from './components/CommentLine'
-import TextEditor from './components/TextEditor'
-import { CurrentUserContext } from './utils/Context'
-import { USERS } from './utils/data'
+import CommentLine from './CommentLine'
+import TextEditor from './TextEditor'
+import { CurrentUserContext } from '../utils/Context'
+import { USERS } from '../utils/data'
 
 // const CURRENT_USER = USERS.amyrobson
 // const CURRENT_USER = USERS.juliusomo
@@ -42,7 +42,7 @@ function Dashboard() {
 
 	return (
 		<CurrentUserContext.Provider value={CURRENT_USER}>
-			<div className="dashboard-app">
+			<div className="dashboard">
 				{thread.map((comment) => (
 					<CommentLine
 						id={comment.id}
