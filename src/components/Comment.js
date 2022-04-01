@@ -7,6 +7,7 @@ import deleteIcon from '../icons/icon-delete.svg'
 import editIcon from '../icons/icon-edit.svg'
 import replyIcon from '../icons/icon-reply.svg'
 import { CurrentUserContext } from '../utils/Context'
+import Modal from './Modal'
 
 function Comment({ score, user, content, created, onDelete, onEdit, onReply }) {
 	const currentUser = useContext(CurrentUserContext)
@@ -57,14 +58,13 @@ function Comment({ score, user, content, created, onDelete, onEdit, onReply }) {
 					<span className="comment-actions">
 						{isAuthor ? (
 							<>
-								<button
-									className="btn btn-link delete"
-									disabled={isEditing}
-									onClick={onDelete}
-								>
-									<img src={deleteIcon} alt="delete-icon" />
-									Delete
-								</button>
+								<Modal onSubmit={onDelete}>
+									<button className="btn btn-link delete" disabled={isEditing}>
+										<img src={deleteIcon} alt="delete-icon" />
+										Delete
+									</button>
+								</Modal>
+
 								<button
 									className="btn btn-link edit"
 									disabled={isEditing}
