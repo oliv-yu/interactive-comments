@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import { CurrentUserContext } from '../utils/Context'
 
 function TextEditor({
@@ -11,9 +11,16 @@ function TextEditor({
 }) {
 	const currentUser = useContext(CurrentUserContext)
 
+	const textAreaRef = useRef(null)
 	const [content, setContent] = useState(initialContent)
 
+	const [parentHeight, setParentHeight] = useState('auto')
+	const [textAreaHeight, setTextAreaHeight] = useState('auto')
+
 	const _handleChange = (event) => {
+		setTextAreaHeight('auto')
+		setParentHeight(`${textAreaRef.current.scrollHeight}px`)
+
 		setContent(event.target.value)
 	}
 
@@ -27,7 +34,14 @@ function TextEditor({
 
 	const _clearContent = () => {
 		setContent('')
+		setParentHeight('auto')
+		setTextAreaHeight('auto')
 	}
+
+	useEffect(() => {
+		setParentHeight(`${textAreaRef.current.scrollHeight}px`)
+		setTextAreaHeight(`${textAreaRef.current.scrollHeight}px`)
+	}, [content])
 
 	return (
 		<form className={`text-editor ${className}`} onSubmit={_handleSubmit}>
@@ -39,13 +53,25 @@ function TextEditor({
 					/>
 				</div>
 			)}
-			<textarea
+
+			<div
 				className="text-editor-textarea"
-				value={content}
-				placeholder={placeholder}
-				onChange={_handleChange}
-			/>
-			<button type="submit" className="btn btn-light btn-sm text-editor-button">
+				style={{
+					height: parentHeight,
+				}}
+			>
+				<textarea
+					ref={textAreaRef}
+					value={content}
+					placeholder={placeholder}
+					onChange={_handleChange}
+					style={{
+						height: textAreaHeight,
+					}}
+				/>
+			</div>
+
+			<button type="submit" className="btn btn-light btn-sm text-editor-submit">
 				{type.toLocaleUpperCase()}
 			</button>
 
