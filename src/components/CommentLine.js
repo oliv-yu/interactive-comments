@@ -27,6 +27,7 @@ function CommentLine({
 					created: Date.now(),
 					user: currentUser,
 					score: 0,
+					replies: [],
 				},
 			],
 		})
@@ -64,18 +65,20 @@ function CommentLine({
 			/>
 
 			<div className="comment-replies">
-				{replies.map((reply) => (
-					<Comment
-						key={reply.id}
-						id={reply.id}
-						score={reply.score}
-						user={reply.user}
-						content={reply.content}
-						created={reply.created}
-						onDelete={() => _handleDeleteReply(reply.id)}
-						onEdit={(edits) => _handleEditReply(reply.id, edits)}
-					/>
-				))}
+				{!!replies.length &&
+					replies.map((reply) => (
+						<CommentLine
+							key={reply.id}
+							id={reply.id}
+							score={reply.score}
+							user={reply.user}
+							content={reply.content}
+							created={reply.created}
+							onDelete={() => _handleDeleteReply(reply.id)}
+							onEdit={(edits) => _handleEditReply(reply.id, edits)}
+							replies={reply.replies}
+						/>
+					))}
 
 				{addingReply && (
 					<TextEditor
