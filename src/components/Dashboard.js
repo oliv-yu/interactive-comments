@@ -3,13 +3,11 @@ import CommentLine from './CommentLine'
 import TextEditor from './TextEditor'
 import { CurrentUserContext } from '../utils/Context'
 import { USERS } from '../utils/data'
-
-// const CURRENT_USER = USERS.amyrobson
-// const CURRENT_USER = USERS.juliusomo
-const CURRENT_USER = USERS.maxblagun
+import SelectUser from './SelectUser'
 
 function Dashboard() {
 	const [thread, setThread] = useState([])
+	const [currentUser, setCurrentUser] = useState(USERS.amyrobson)
 
 	const addComment = (content) => {
 		setThread([
@@ -18,7 +16,7 @@ function Dashboard() {
 				id: thread.length,
 				content,
 				created: Date.now(),
-				user: CURRENT_USER,
+				user: currentUser,
 				score: 0,
 				replies: [],
 			},
@@ -41,8 +39,10 @@ function Dashboard() {
 	}
 
 	return (
-		<CurrentUserContext.Provider value={CURRENT_USER}>
+		<CurrentUserContext.Provider value={currentUser}>
 			<div className="dashboard">
+				<SelectUser currentUser={currentUser} onChangeUser={setCurrentUser} />
+
 				{thread.map((comment) => (
 					<CommentLine
 						id={comment.id}
