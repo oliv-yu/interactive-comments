@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import CommentLine from './CommentLine'
 import TextEditor from './TextEditor'
 import { CurrentUserContext } from '../utils/Context'
@@ -6,8 +6,12 @@ import { USERS } from '../utils/data'
 import SelectUser from './SelectUser'
 
 function Dashboard() {
-	const [thread, setThread] = useState([])
-	const [currentUser, setCurrentUser] = useState(USERS.amyrobson)
+	const [thread, setThread] = useState(
+		JSON.parse(localStorage.getItem('commentsThread')) || []
+	)
+	const [currentUser, setCurrentUser] = useState(
+		USERS[localStorage.getItem('currentUser') || 'amyrobson']
+	)
 
 	const addComment = (content) => {
 		setThread([
@@ -37,6 +41,17 @@ function Dashboard() {
 			})
 		)
 	}
+
+	useEffect(() => {
+		const storeState = () => {
+			localStorage.setItem('commentsThread', JSON.stringify(thread))
+			localStorage.setItem('currentUser', currentUser.username)
+		}
+
+		window.addEventListener('beforeunload', storeState)
+
+		return () => window.removeEventListener('beforeunload', storeState)
+	}, [thread, currentUser])
 
 	return (
 		<CurrentUserContext.Provider value={currentUser}>
