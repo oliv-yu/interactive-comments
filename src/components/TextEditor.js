@@ -6,13 +6,16 @@ function TextEditor({
 	className = '',
 	initialContent = '',
 	placeholder = 'Add a comment...',
+	replyTo,
 	type = 'send',
 	children,
 }) {
 	const currentUser = useContext(CurrentUserContext)
 
 	const textAreaRef = useRef(null)
-	const [content, setContent] = useState(initialContent)
+	const [content, setContent] = useState(
+		replyTo ? `@${replyTo} ${initialContent}` : `${initialContent}`
+	)
 
 	const [parentHeight, setParentHeight] = useState('auto')
 	const [textAreaHeight, setTextAreaHeight] = useState('auto')
