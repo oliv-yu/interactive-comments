@@ -1,5 +1,5 @@
-import { timeSince } from '../utils/utils'
 import { useContext, useState } from 'react'
+import Modal from './Modal'
 import TextEditor from './TextEditor'
 import plusIcon from '../icons/icon-plus.svg'
 import minusIcon from '../icons/icon-minus.svg'
@@ -7,7 +7,8 @@ import deleteIcon from '../icons/icon-delete.svg'
 import editIcon from '../icons/icon-edit.svg'
 import replyIcon from '../icons/icon-reply.svg'
 import { CurrentUserContext } from '../utils/Context'
-import Modal from './Modal'
+import { USERS } from '../utils/data'
+import { formatMentionText, timeSince } from '../utils/utils'
 
 function Comment({ score, user, content, created, onDelete, onEdit, onReply }) {
 	const currentUser = useContext(CurrentUserContext)
@@ -26,6 +27,7 @@ function Comment({ score, user, content, created, onDelete, onEdit, onReply }) {
 		onEdit({ content })
 		setIsEditing(false)
 	}
+
 	const isAuthor = user.username === currentUser.username
 
 	return (
@@ -97,7 +99,9 @@ function Comment({ score, user, content, created, onDelete, onEdit, onReply }) {
 						</button>
 					</TextEditor>
 				) : (
-					<div className="comment-content">{content}</div>
+					<div className="comment-content">
+						{formatMentionText(content, Object.keys(USERS))}
+					</div>
 				)}
 			</div>
 		</div>

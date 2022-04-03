@@ -95,6 +95,11 @@
 			overflow-wrap: break-word;
 			white-space: pre-wrap;
 			width: 100%;
+
+			.mention {
+				color: $moderateblue;
+				font-weight: 900;
+			}
 		}
 	}
 }
