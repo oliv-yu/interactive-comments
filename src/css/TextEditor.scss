@@ -1,7 +1,7 @@
 .text-editor {
-	width: 100%;
-	flex-direction: row;
 	display: flex;
+	flex-direction: row;
+	width: 100%;
 
 	&.white {
 		background-color: $white;
@@ -31,13 +31,43 @@
 	}
 
 	.btn {
-		height: 2.5rem;
+		height: fit-content;
 	}
 
 	.text-editor-submit {
 		background-color: $moderateblue;
 		color: $white;
 		font-weight: 800;
-		padding: 0.25rem 1rem;
+		padding: 0.5rem 1rem;
+
+		img {
+			display: none;
+		}
+	}
+}
+
+@media only screen and (max-width: $dashboardWidth) {
+	.text-editor {
+		&.white {
+			padding: 3%;
+		}
+
+		.text-editor-user-icon {
+			img {
+				display: none;
+			}
+		}
+
+		.text-editor-submit {
+			padding: 0.25rem;
+
+			img {
+				display: block;
+			}
+
+			.btn-text {
+				display: none;
+			}
+		}
 	}
 }

@@ -1,4 +1,5 @@
 import { useContext, useEffect, useRef, useState } from 'react'
+import enterIcon from '../icons/icon-enter.svg'
 import { CurrentUserContext } from '../utils/Context'
 
 function TextEditor({
@@ -75,7 +76,8 @@ function TextEditor({
 			</div>
 
 			<button type="submit" className="btn btn-light btn-sm text-editor-submit">
-				{type.toLocaleUpperCase()}
+				<img src={enterIcon} alt="enter-icon" />
+				<span className="btn-text">{type.toLocaleUpperCase()}</span>
 			</button>
 
 			{children}

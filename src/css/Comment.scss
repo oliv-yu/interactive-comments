@@ -103,3 +103,23 @@
 		}
 	}
 }
+
+@media only screen and (max-width: $dashboardWidth) {
+	.comment {
+		padding: 3%;
+	}
+
+	.comment-user-icon img {
+		display: none;
+	}
+
+	.comment-actions {
+		.btn-link {
+			padding: 0.25rem;
+
+			.btn-text {
+				display: none;
+			}
+		}
+	}
+}

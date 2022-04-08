@@ -63,7 +63,7 @@ function Comment({ score, user, content, created, onDelete, onEdit, onReply }) {
 								<Modal onSubmit={onDelete}>
 									<button className="btn btn-link delete" disabled={isEditing}>
 										<img src={deleteIcon} alt="delete-icon" />
-										Delete
+										<span className="btn-text">Delete</span>
 									</button>
 								</Modal>
 
@@ -73,13 +73,13 @@ function Comment({ score, user, content, created, onDelete, onEdit, onReply }) {
 									onClick={() => setIsEditing(true)}
 								>
 									<img src={editIcon} alt="edit-icon" />
-									Edit
+									<span className="btn-text">Edit</span>
 								</button>
 							</>
 						) : (
 							<button onClick={onReply} className="btn btn-link reply">
 								<img src={replyIcon} alt="reply-icon" />
-								Reply
+								<span className="btn-text">Reply</span>
 							</button>
 						)}
 					</span>
