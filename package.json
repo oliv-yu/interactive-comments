@@ -1,6 +1,10 @@
 {
 	"name": "interactive-comments",
 	"version": "0.1.0",
+	"homepage": "https://oliv-yu.github.io/interactive-comments",
+	"engines": {
+		"node": "16.x"
+	},
 	"private": true,
 	"dependencies": {
 		"@testing-library/jest-dom": "^5.16.2",
@@ -9,14 +13,15 @@
 		"react": "^17.0.2",
 		"react-dom": "^17.0.2",
 		"react-scripts": "5.0.0",
-		"sass": "^1.49.9",
 		"web-vitals": "^2.1.4"
 	},
 	"scripts": {
 		"start": "react-scripts start",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
-		"eject": "react-scripts eject"
+		"eject": "react-scripts eject",
+		"predeploy": "npm run build",
+		"deploy": "gh-pages -d build"
 	},
 	"eslintConfig": {
 		"extends": [
@@ -35,5 +40,9 @@
 			"last 1 firefox version",
 			"last 1 safari version"
 		]
+	},
+	"devDependencies": {
+		"sass": "^1.50.0",
+		"gh-pages": "^3.2.3"
 	}
 }
