@@ -107,6 +107,16 @@
 @media only screen and (max-width: $dashboardWidth) {
 	.comment {
 		padding: 3%;
+
+		.comment-left {
+			.comment-score {
+				margin-right: 0.75rem;
+
+				.btn-light {
+					padding: 0.4rem 0.5rem;
+				}
+			}
+		}
 	}
 
 	.comment-user-icon img {

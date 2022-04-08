@@ -3,7 +3,7 @@
 
 	.modal-dialog {
 		margin: 10rem auto;
-		width: 350px;
+		max-width: 350px;
 
 		.modal-content {
 			border-radius: 1rem;
@@ -29,6 +29,24 @@
 		.submit {
 			background-color: $softred;
 			border-color: $softred;
+		}
+	}
+}
+
+@media only screen and (max-width: $dashboardWidth) {
+	.modal {
+		.modal-dialog {
+			padding: 3%;
+
+			.modal-content {
+				padding: 0.25rem;
+			}
+
+			.modal-header,
+			.modal-body,
+			.modal-footer {
+				padding: 0.75rem;
+			}
 		}
 	}
 }
