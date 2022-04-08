@@ -37,7 +37,9 @@ function Comment({ score, user, content, created, onDelete, onEdit, onReply }) {
 					<button className="btn btn-light btn-sm" onClick={_handleUpVote}>
 						<img src={plusIcon} alt="plus-icon" />
 					</button>
-					<div className="comment-score-number">{score.toString()}</div>
+					<div className={`comment-score-number ${score < 0 && 'negative'}`}>
+						{score.toString()}
+					</div>
 					<button className="btn btn-light btn-sm" onClick={_handleDownVote}>
 						<img src={minusIcon} alt="minus-icon" />
 					</button>

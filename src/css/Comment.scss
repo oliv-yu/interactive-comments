@@ -25,6 +25,10 @@
 
 			.comment-score-number {
 				text-align: center;
+
+				&.negative {
+					color: $softred;
+				}
 			}
 		}
 	}
