@@ -30,8 +30,12 @@
 		}
 	}
 
-	.btn {
+	.btn-group {
 		height: fit-content;
+
+		.btn {
+			border: none;
+		}
 	}
 
 	.text-editor-submit {
@@ -62,9 +66,17 @@
 			padding: 3% 4%;
 		}
 
-		.text-editor-submit {
-			padding: 0.25rem;
+		.btn-group {
+			height: unset;
+			flex-direction: column;
 
+			.btn {
+				background-color: unset;
+				padding: 0;
+			}
+		}
+
+		.text-editor-submit {
 			img {
 				display: block;
 			}
@@ -72,6 +84,10 @@
 			.btn-text {
 				display: none;
 			}
+		}
+
+		.text-editor-cancel {
+			color: black;
 		}
 	}
 }

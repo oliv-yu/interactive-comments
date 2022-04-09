@@ -3,13 +3,13 @@ import enterIcon from '../icons/icon-enter.svg'
 import { CurrentUserContext } from '../utils/Context'
 
 function TextEditor({
+	onCancel,
 	onSubmit,
 	className = '',
 	initialContent = '',
 	placeholder = 'Add a comment...',
 	replyTo,
 	type = 'send',
-	children,
 }) {
 	const currentUser = useContext(CurrentUserContext)
 
@@ -75,12 +75,24 @@ function TextEditor({
 				/>
 			</div>
 
-			<button type="submit" className="btn btn-light btn-sm text-editor-submit">
-				<img src={enterIcon} alt="enter-icon" />
-				<span className="btn-text">{type.toLocaleUpperCase()}</span>
-			</button>
+			<div class="btn-group">
+				<button
+					type="submit"
+					className="btn btn-light btn-sm text-editor-submit"
+				>
+					<img src={enterIcon} alt="enter-icon" />
+					<span className="btn-text">{type.toLocaleUpperCase()}</span>
+				</button>
 
-			{children}
+				{onCancel && (
+					<button
+						className="btn btn-secondary btn-sm text-editor-cancel"
+						onClick={onCancel}
+					>
+						X
+					</button>
+				)}
+			</div>
 		</form>
 	)
 }

@@ -89,17 +89,11 @@ function Comment({ score, user, content, created, onDelete, onEdit, onReply }) {
 
 				{isEditing ? (
 					<TextEditor
+						onCancel={() => setIsEditing(false)}
 						initialContent={content}
 						onSubmit={_handleEdit}
 						type="update"
-					>
-						<button
-							className="btn btn-light btn-sm"
-							onClick={() => setIsEditing(false)}
-						>
-							x
-						</button>
-					</TextEditor>
+					/>
 				) : (
 					<div className="comment-content">
 						{formatMentionText(content, Object.keys(USERS))}
