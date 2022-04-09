@@ -63,7 +63,7 @@ function Comment({ score, user, content, created, onDelete, onEdit, onReply }) {
 						{isAuthor ? (
 							<>
 								<Modal onSubmit={onDelete}>
-									<button className="btn btn-link delete" disabled={isEditing}>
+									<button className="btn btn-link delete">
 										<img src={deleteIcon} alt="delete-icon" />
 										<span className="btn-text">Delete</span>
 									</button>
